@@ -37,9 +37,9 @@ Elle permet de :
 
 ---
 
-## 📌 Technologies envisagées
+## 📌 Langages et bibliothèques utilisées
 
-- `JDBC` ou `MySQL` pour la gestion des données dans la base de données.
+- `JDBC` et `MySQL` pour la gestion des données dans la base de données.
 - Interface graphique avec `Javafx` et `FXML`.
 
 ---
