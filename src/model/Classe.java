@@ -20,7 +20,7 @@ public class Classe {
     /**
      * Le niveau de la classe (CP, CE1, CE2, CM1, CM2)
      */
-    private String niveau;
+    private String[] niveaux;
 
     /**
      * Le nombre d'élèves que peut accueillir la classe
@@ -38,18 +38,28 @@ public class Classe {
      * @param niveauClasse niveau de la classe
      * @param nbEleve nombre d'élèves maximum dans la classe
      */
-    public Classe(long idClasse, String niveauClasse, byte nbEleve) {
+    public Classe(long idClasse, String[] niveauClasse, byte nbEleve) {
         this.id = idClasse;
 
-        this.niveau = null;
-        for (String unNiveau : lesNiveaux) {
-            if (niveauClasse.equals(unNiveau)) {
-                this.niveau = niveauClasse;
+        if (niveauClasse == null) {
+            throw new IllegalArgumentException("Erreur Classe() : la liste de niveaux renseignée en paramètre est null !");
+        } else {
+            boolean egal = false;
+            this.niveaux = new String[niveauClasse.length];
+            for (int i = 0 ; i < niveauClasse.length ; i++) {
+                for (String niv : lesNiveaux) {
+                    if (niveauClasse[i].equals(niv)) {
+                        egal = true;
+                        this.niveaux[i] = niveauClasse[i];
+                    }
+                }
+                if ( ! egal) {
+                    throw new IllegalArgumentException("Erreur Classe() : un niveau renseigné en paramètre n'est pas valide !");
+                }
+                egal = false;
             }
         }
-        if (this.niveau == null) {
-            throw new IllegalArgumentException("Erreur Classe() : le niveau renseigné en paramètre est invalide !");
-        }
+
 
         if (nbEleve > 1) {
             this.nbEleve = nbEleve;
@@ -72,8 +82,8 @@ public class Classe {
      * Getter niveau de la classe
      * @return le niveau (CP, CE1, CE2, CM1, CM2)
      */
-    public String getNiveau() {
-        return this.niveau;
+    public String[] getNiveau() {
+        return this.niveaux;
     }
 
     /**
