@@ -12,6 +12,9 @@ public class Eleve {
      */
     private final String[] lesNiveaux = {"CP", "CE1", "CE2", "CM1", "CM2"};
 
+    /**
+     * id de l'élève
+     */
     private long id;
 
     /**
@@ -59,13 +62,19 @@ public class Eleve {
     private byte niveauScolaire;
 
     /**
+     * Vrai si l'élève est autonome
+     * Faux sinon
+     */
+    private boolean autonome;
+
+    /**
      * Constructeur de Eleve
      * @param nomEleve nom de famille de l'élève
      * @param prenomEleve prénom de l'élève
      * @param niveauEleve classe actuelle
      * @param leTemperament tempérament de l'élève en classe
      */
-    public Eleve(long idEleve, String nomEleve, String prenomEleve, char leGenre, String niveauEleve, byte leTemperament, byte leNiveauScolaire) {
+    public Eleve(long idEleve, String nomEleve, String prenomEleve, char leGenre, String niveauEleve, byte leTemperament, byte leNiveauScolaire, boolean auto) {
 
         this.id = idEleve;
 
@@ -103,6 +112,8 @@ public class Eleve {
         } else {
             throw new IllegalArgumentException("Erreur Eleve() : le niveau scolaire renseigné est invalide !");
         }
+
+        this.autonome = auto;
     }
 
     public long getEleveID() {
@@ -131,6 +142,10 @@ public class Eleve {
 
     public byte getNiveauScolaire() {
         return this.niveauScolaire;
+    }
+
+    public boolean getAutonomie() {
+        return this.autonome;
     }
 
     /**
